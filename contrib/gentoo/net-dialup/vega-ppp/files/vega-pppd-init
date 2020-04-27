@@ -1,0 +1,20 @@
+#!/sbin/runscript
+
+depend() {
+	need net
+}
+
+start() {
+	ebegin "Starting vega-pppd"
+	start-stop-daemon --start --quiet --exec /usr/sbin/vega-pppd -- -p /var/run/vega-pppd.pid ${VEGA_PPPD_OPTS}
+	eend $?
+}
+
+stop() {
+	ebegin "Stopping vega-pppd"
+	start-stop-daemon --stop --quiet --pidfile /var/run/vega-pppd.pid
+	result=$?
+	start-stop-daemon --stop --quiet --oknodo --exec /usr/sbin/vega-pppd
+	result=$(( $result + $? ))
+	eend $result
+}

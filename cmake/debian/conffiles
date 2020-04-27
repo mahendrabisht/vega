@@ -1,0 +1,3 @@
+/etc/init.d/vega-ppp
+/etc/vega-ppp.conf.dist
+/etc/default/vega-ppp

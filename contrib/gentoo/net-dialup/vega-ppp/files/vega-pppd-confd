@@ -1,0 +1,5 @@
+# Config file for /etc/init.d/vega-pptpd
+
+# Any extra options you want to pass to pptpd
+# on start-up should be put here.
+VEGA_PPPD_OPTS="-d -c /etc/vega-ppp.conf"

@@ -1,0 +1,16 @@
+[Unit]
+Description=Vega-PPP
+After=network.target
+
+[Service]
+ExecStart=/usr/sbin/vega-pppd -d -p /var/run/vega-pppd.pid -c /etc/vega-ppp.conf
+StandardOutput=null
+ExecReload=/bin/kill -SIGUSR1 $MAINPID
+PIDFile=/var/run/vega-pppd.pid
+Type=forking
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+Alias=vega-ppp.service
+
